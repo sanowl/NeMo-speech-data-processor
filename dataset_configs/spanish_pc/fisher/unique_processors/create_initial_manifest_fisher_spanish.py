@@ -114,9 +114,9 @@ class CreateInitialManifestFisherSpanish(BaseParallelProcessor):
 
         for transcript_file in tqdm(glob.glob(transcript_src_dir + "/*.tdf")):
             with open(transcript_file, "r") as f_in:
-                f_in.readline()  # skip column headings
-                f_in.readline()  # skip comments with ;;
-                f_in.readline()  # skip comments with ;;
+                f_in.readline(5_000_000)  # skip column headings
+                f_in.readline(5_000_000)  # skip comments with ;;
+                f_in.readline(5_000_000)  # skip comments with ;;
                 for line_i, line in enumerate(f_in):
                     line = line.strip()
                     line = line.split("\t")
