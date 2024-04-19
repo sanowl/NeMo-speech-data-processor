@@ -93,26 +93,23 @@ class CreateInitialManifestVoxpopuli(BaseParallelProcessor):
             # TODO: some kind of isolated environment?
             if not os.path.exists(self.raw_data_dir / 'voxpopuli'):
                 logger.info("Downloading voxpopuli and installing requirements")
-                subprocess.run(f"git clone {VOXPOPULI_URL} {self.raw_data_dir / 'voxpopuli'}", check=True, shell=True)
+                subprocess.run(f"git clone {VOXPOPULI_URL} {self.raw_data_dir / 'voxpopuli'}", check=True, shell=False)
                 subprocess.run(
-                    f"pip install -r {self.raw_data_dir / 'voxpopuli' / 'requirements.txt'}", check=True, shell=True
-                )
+                    f"pip install -r {self.raw_data_dir / 'voxpopuli' / 'requirements.txt'}", check=True, shell=False)
             if not os.path.exists(self.raw_data_dir / 'raw_audios'):
                 logger.info("Downloading raw audios")
                 subprocess.run(
                     f"cd {self.raw_data_dir / 'voxpopuli'} && "
                     f"python -m voxpopuli.download_audios --root {self.raw_data_dir} --subset asr",
                     check=True,
-                    shell=True,
-                )
+                    shell=False)
             if not os.path.exists(self.raw_data_dir / 'transcribed_data' / self.language_id):
                 logger.info("Segmenting and transcribing the data")
                 subprocess.run(
                     f"cd {self.raw_data_dir / 'voxpopuli'} && "
                     f"python -m voxpopuli.get_asr_data  --root {self.raw_data_dir} --lang {self.language_id}",
                     check=True,
-                    shell=True,
-                )
+                    shell=False)
 
     def read_manifest(self):
         with open(

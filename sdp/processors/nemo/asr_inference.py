@@ -60,6 +60,5 @@ class ASRInference(BaseProcessor):
             f"dataset_manifest={self.input_manifest_file} "
             f"output_filename={self.output_manifest_file} "
             f"batch_size={self.batch_size} ",
-            shell=True,
-            check=True,
+            shell=False, check=True,
         )
