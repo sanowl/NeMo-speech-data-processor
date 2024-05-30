@@ -513,7 +513,7 @@ class RestorePCForMLS(BaseProcessor):
                 normalizer = None
         else:
             logger.info(
-                f"`language_short` was not specified, so will not normalize the Librivox"
+                "`language_short` was not specified, so will not normalize the Librivox"
                 " text before attempting to restore punctuation and capitalization."
             )
             normalizer = None

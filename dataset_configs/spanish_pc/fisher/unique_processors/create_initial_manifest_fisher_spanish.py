@@ -184,7 +184,7 @@ class CreateInitialManifestFisherSpanish(BaseParallelProcessor):
 
         if float(duration) == 0:
             logger.info(f"created wave file with duration zero: {tgt_wav_file}")
-            logger.info(f"=> will not add this file to manifest")
+            logger.info("=> will not add this file to manifest")
             return []
 
         entry["duration"] = float(duration)

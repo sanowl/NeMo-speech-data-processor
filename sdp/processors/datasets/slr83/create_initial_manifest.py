@@ -223,7 +223,7 @@ class CustomDataSplitSLR83(BaseProcessor):
                 raise RuntimeError(
                     f"Generated split stats (num files, duration) = {actual_stats}. "
                     f"But expected to see {EXPECTED_SPLIT_STATS[(self.dialect, split)]}. "
-                    f"Did you add some custom pre-processing that changes number of files or duration?"
+                    "Did you add some custom pre-processing that changes number of files or duration?"
                 )
 
         number_of_entries = 0

@@ -92,7 +92,7 @@ class CreateInitialManifestMLS(BaseParallelProcessor):
         # validate params
         if self.use_opus_archive and self.resampled_audio_dir:
             raise ValueError(
-                f"`use_opus_archive` is True and `resampled_audio_dir` is not None, but we currently do not"
+                "`use_opus_archive` is True and `resampled_audio_dir` is not None, but we currently do not"
                 " support resampling OPUS-format audio, please either set `use_opus_archive` to False or"
                 " resampled_audio_dir to None."
             )

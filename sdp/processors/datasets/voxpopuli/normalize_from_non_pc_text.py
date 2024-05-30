@@ -161,7 +161,7 @@ class NormalizeFromNonPCTextVoxpopuli(BaseParallelProcessor):
             restored_norm_text = restore_pc(data_entry[self.raw_text_key], data_entry[self.norm_text_key])
         except:
             logger.warning(
-                f"Failed to restore normalization.\nRaw text: %s\nNormalized text: %s",
+                "Failed to restore normalization.\nRaw text: %s\nNormalized text: %s",
                 data_entry[self.raw_text_key],
                 data_entry[self.norm_text_key],
             )
