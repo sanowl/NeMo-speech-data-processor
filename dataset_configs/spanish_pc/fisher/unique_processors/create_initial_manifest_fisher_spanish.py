@@ -51,6 +51,7 @@ from tqdm import tqdm
 from sdp.logging import logger
 from sdp.processors.base_processor import BaseParallelProcessor, DataEntry
 from sdp.utils.common import extract_archive
+from security import safe_command
 
 AUDIO_TGZ_FILE = "fisher_spa_LDC2010S01.tgz"
 TRANSCRIPT_TGZ_FILE = "LDC2010T04.tgz"
@@ -103,7 +104,7 @@ class CreateInitialManifestFisherSpanish(BaseParallelProcessor):
             file_id = os.path.basename(sph_path).split(".sph")[0]
             wav_path = os.path.join(wav_tgt_dir, file_id + ".wav")
             cmd = [self.path_to_sph2pipe, "-f", "wav", "-p", sph_path, wav_path]
-            subprocess.run(cmd)
+            safe_command.run(subprocess.run, cmd)
         logger.info("Finished converting files from .sph to .wav")
 
     def read_manifest(self) -> List[tuple[str]]:
