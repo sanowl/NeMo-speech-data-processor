@@ -17,6 +17,7 @@ import subprocess
 from pathlib import Path
 
 from sdp.processors.base_processor import BaseProcessor
+from security import safe_command
 
 # Note that we do not re-use base parallel implementation, since the ASR
 # inference is already run in batches.
@@ -54,8 +55,7 @@ class ASRInference(BaseProcessor):
     def process(self):
         """This will add "pred_text" key into the output manifest."""
         os.makedirs(os.path.dirname(self.output_manifest_file), exist_ok=True)
-        subprocess.run(
-            f"python {self.script_path} "
+        safe_command.run(subprocess.run, f"python {self.script_path} "
             f"pretrained_name={self.pretrained_model} "
             f"dataset_manifest={self.input_manifest_file} "
             f"output_filename={self.output_manifest_file} "
