@@ -180,7 +180,7 @@ class CreateInitialManifestFisherSpanish(BaseParallelProcessor):
         entry["audio_filepath"] = tgt_wav_file
 
         # get duration
-        duration = subprocess.check_output("soxi -D {0}".format(entry["audio_filepath"]), shell=True)
+        duration = subprocess.check_output("soxi -D {0}".format(entry["audio_filepath"]), shell=False)
 
         if float(duration) == 0:
             logger.info(f"created wave file with duration zero: {tgt_wav_file}")
